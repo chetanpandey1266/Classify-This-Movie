@@ -27,7 +27,7 @@ id - A unique key by which the corresponding image is identified. genres - Here 
 
 You must accept the competition's rules to gain access to the competition data.
 
-# Background
+## Background
 
 The main library used for this competition is fastai, which is completely build on pytorch and provide easy to understand and implement codes. 
 
