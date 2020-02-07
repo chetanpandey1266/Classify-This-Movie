@@ -8,8 +8,8 @@ Original file is located at
 """
 
 import os
-os.environ['KAGGLE_USERNAME'] = "chetan06" # username from the json file
-os.environ['KAGGLE_KEY'] = "7d2278eed41410fa7e29bd2c7cea4e57" # key from the json file
+os.environ['KAGGLE_USERNAME'] = "XXXXXXXX" # username from the kaggle json file
+os.environ['KAGGLE_KEY'] = "XXXXXXXXXXXXXXXXXXXXXX" # key from the kaggle json file
 !kaggle datasets download -d sshukla21/clabscvcomp # api copied from kaggle
 !unzip -qq clabscvcomp.zip
 !rm -r clabscvcomp.zip
@@ -36,8 +36,7 @@ sorted(train.genres.unique()) ## Shows all classes in the dataframe
 
 train.genres.value_counts(normalize=True) ## Distribution of dataset
 
-
-
+#DATA AUGMENTATION
 sz = 256 ## Image size
 bs = 16 ## Batch size
 tfms = get_transforms( ## Transformation to apply on Train data
@@ -82,7 +81,7 @@ learn.unfreeze()
 learn.lr_find()
 learn.recorder.plot(suggestion=True)
 
-learn.fit_one_cycle(5, max_lr=slice(1e-05, 1e-04))
+learn.fit_one_cycle(5, max_lr=slice(1e-05, 1e-04)) # In max_lr one can input the suitable learning rate as per the graph obtained from above codes
 
 preds = learn.get_preds(ds_type=DatasetType.Test) ## get prediction in test data
 preds = np.argmax(preds[0].numpy(),axis = 1) #finding the class with max probability
@@ -95,6 +94,7 @@ final_submit.genres = final_preds
 final_submit.head()
 final_submit.to_csv('submission.csv',index = False)
 
+#the code written below is to submit your code to kaggle competition using kaggle competition api
 !pip install kaggle
-!kaggle competitions submit -c cl-cv2020 -f submission.csv -m "Message"
+!kaggle competitions submit -c cl-cv2020 -f submission.csv -m "Message" # competition api
 
