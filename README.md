@@ -1,4 +1,4 @@
-# Classify-This-Movie
+# Classify This Movie
 Competition on Kaggle by Cyberlabs
 
 ## Problem Statement
